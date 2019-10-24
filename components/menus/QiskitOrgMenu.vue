@@ -9,27 +9,27 @@
           <div class="overlay" />
           <nav class="vertical-navigation">
             <h2>Elements</h2>
-            <a
+            <nuxt-link
               v-for="(link, index) in elements"
               :key="`vertical-element-link-${index}`"
               :class="{
                 'vertical-navigation__item': true,
                 'nuxt-link-active': isActive(link.to)
               }"
-              :href="link.to"
+              :to="link.to"
             >
               {{ link.label }}
-            </a>
+            </nuxt-link>
             <h2>Learn more</h2>
-            <a
+            <nuxt-link
               :class="{
                 'vertical-navigation__item': true,
                 'vertical-navigation__item--active': isCommunityActive()
               }"
-              href="/advocates"
+              to="/advocates"
             >
               Community
-            </a>
+            </nuxt-link>
             <div
               v-if="isCommunityActive()"
               class="vertical-community-navigation"
@@ -46,43 +46,43 @@
                 {{ link.label }}
               </nuxt-link>
             </div>
-            <a
+            <nuxt-link
               v-for="(link, index) in learnMore"
               :key="`vertical-learn-more-link-${index}`"
               :class="{
                 'vertical-navigation__item': true,
                 'nuxt-link-active': isActive(link.to)
               }"
-              :href="link.to"
+              :to="link.to"
             >
               {{ link.label }}
-            </a>
+            </nuxt-link>
           </nav>
         </section>
-        <a class="link-to-home" href="/">Qiskit</a>
+        <nuxt-link class="link-to-home" to="/">Qiskit</nuxt-link>
         <nav class="navigation-group navigation-group--with-separator">
-          <a
+          <nuxt-link
             v-for="(link, index) in elements"
             :key="`element-link-${index}`"
             :class="{
               'navigation-group__item': true,
               'nuxt-link-active': isActive(link.to)
             }"
-            :href="link.to"
+            :to="link.to"
           >
             {{ link.label }}
-          </a>
+          </nuxt-link>
         </nav>
         <nav class="navigation-group navigation-group--fixed navigation-group--right-aligned">
-          <a
+          <nuxt-link
             :class="{
               'navigation-group__item': true,
               'navigation-group__item--active': isCommunityActive()
             }"
-            href="/advocates"
+            to="/advocates"
           >
             Community
-          </a>
+          </nuxt-link>
           <a
             v-for="(link, index) in learnMore"
             :key="`learn-more-link-${index}`"
@@ -91,6 +91,7 @@
               'nuxt-link-active': isActive(link.to)
             }"
             :href="link.to"
+            target="_blank"
           >
             {{ link.label }}
           </a>

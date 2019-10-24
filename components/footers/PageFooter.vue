@@ -7,11 +7,11 @@
             Qiskit Elements
           </h2>
           <ul>
-            <li><a class="footer-column__link" href="https://qiskit.org/terra">Terra</a></li>
-            <li><a class="footer-column__link" href="https://qiskit.org/aer">Aer</a></li>
-            <li><a class="footer-column__link" href="https://qiskit.org/aqua">Aqua</a></li>
-            <li><a class="footer-column__link" href="https://qiskit.org/ignis">Ignis</a></li>
-            <li><a class="footer-column__link" href="https://qiskit.org/ibmqaccount">IBM Q Account</a></li>
+            <li><nuxt-link class="footer-column__link" to="/terra">Terra</nuxt-link></li>
+            <li><nuxt-link class="footer-column__link" to="/aer">Aer</nuxt-link></li>
+            <li><nuxt-link class="footer-column__link" to="/aqua">Aqua</nuxt-link></li>
+            <li><nuxt-link class="footer-column__link" to="/ignis">Ignis</nuxt-link></li>
+            <li><nuxt-link class="footer-column__link" to="/ibmqaccount">IBM Q Account</nuxt-link></li>
           </ul>
         </section>
         <section class="footer-column">
