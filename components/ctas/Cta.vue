@@ -6,6 +6,7 @@
     :to="!isStatic && isInternal(to) ? to : null"
     :rel="isExternal(to) ? 'noopener' : null"
     :target="isExternal(to) ? '_blank' : null"
+    v-on="$listeners"
   >
     <slot />
   </component>
