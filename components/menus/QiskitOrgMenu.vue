@@ -92,6 +92,7 @@
             }"
             :href="link.to"
             target="_blank"
+            @click="link.segment && $trackClickEvent(link.segment)"
           >
             {{ link.label }}
           </a>
@@ -150,7 +151,15 @@ export default class extends Vue {
   @Prop({
     type: Array,
     default: () => [
-      { to: 'https://quantum-computing.ibm.com/jupyter/tutorial/1_start_here.ipynb', label: 'Tutorials' },
+      {
+        to: 'https://quantum-computing.ibm.com/jupyter/tutorial/1_start_here.ipynb',
+        label: 'Tutorials',
+        segment: {
+          action: 'Tutorials',
+          objectType: 'Link',
+          milestoneName: 'Looked at tutorials'
+        }
+      },
       { to: 'https://qiskit.org/documentation', label: 'API Documentation' }
     ]
   }) learnMore
