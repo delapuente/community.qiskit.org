@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 declare global {
   interface Window {
     bluemixAnalytics: any
@@ -22,7 +24,7 @@ interface CustomEvent {
   successFlag: boolean
 }
 
-export function trackClickEvent (params: ClickEventParams) {
+function trackClickEvent (params: ClickEventParams) {
   const { action, objectType, milestoneName } = params;
   if (window.bluemixAnalytics && window.digitalData) {
     let segmentEvent: CustomEvent = {
@@ -41,4 +43,6 @@ export function trackClickEvent (params: ClickEventParams) {
 
     window.bluemixAnalytics.trackEvent('Custom Event', segmentEvent);
   }
-};
+}
+
+Vue.prototype.$trackClickEvent = trackClickEvent
