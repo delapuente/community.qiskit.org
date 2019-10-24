@@ -5,6 +5,7 @@
       image="images/qiskit-ibmqp-logo.svg"
       :description="description"
       sources="https://github.com/Qiskit/qiskit-ibmq-provider"
+      segment-action="IBM Q Account: GitHub Repository"
     />
     <LegacySection>
       <article>
@@ -21,6 +22,10 @@
             title="Link"
             rel="noopener"
             target="_blank"
+            @click="$trackClickEvent({
+              action: 'Link to Access IBMQ Systems',
+              objectType: 'Link'
+            })"
           >
             Follow these steps
           </a>
