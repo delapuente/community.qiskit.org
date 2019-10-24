@@ -87,6 +87,7 @@ export default {
   */
   plugins: [
     '~/plugins/directives.ts',
+    '~/plugins/segment-analytics.ts',
     '~/plugins/deep-load.ts'
   ],
 
