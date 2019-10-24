@@ -1,5 +1,9 @@
 <template>
-  <a :class="{ 'cta': true, 'cta--secondary': secondary }" :href="to">
+  <a
+    :class="{ 'cta': true, 'cta--secondary': secondary }"
+    :href="to"
+    v-on="$listeners"
+  >
     <slot />
   </a>
 </template>
