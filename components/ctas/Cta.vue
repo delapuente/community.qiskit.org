@@ -1,7 +1,7 @@
 <template>
   <component
     :is="!isStatic && isInternal(to) ? 'nuxt-link' : 'a'"
-    :class="[ 'button', { 'button--secondary': secondary } ]"
+    :class="[ 'cta', { 'cta--secondary': secondary } ]"
     :href="to"
     :to="!isStatic && isInternal(to) ? to : null"
     :rel="isExternal(to) ? 'noopener' : null"
