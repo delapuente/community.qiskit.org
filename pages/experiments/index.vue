@@ -101,6 +101,8 @@ main {
 }
 
 #browse-the-experiments {
+  color: var(--body-color-light);
+
   h2 {
     @include elegant-title();
   }
