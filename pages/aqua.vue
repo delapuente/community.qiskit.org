@@ -44,7 +44,10 @@
         <h2>Example</h2>
         <!-- eslint-disable vue/multiline-html-element-content-newline -->
         <!-- eslint-disable vue/html-indent -->
-        <SyntaxHighlight lang="python">from qiskit import Aer
+        <SyntaxHighlight
+          lang="python"
+          :label="title"
+        >from qiskit import Aer
 from qiskit.aqua.components.oracles import LogicalExpressionOracle
 from qiskit.aqua.algorithms import Grover
 

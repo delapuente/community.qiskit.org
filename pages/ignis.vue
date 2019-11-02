@@ -47,7 +47,10 @@
         <h2>Example</h2>
         <!-- eslint-disable vue/multiline-html-element-content-newline -->
         <!-- eslint-disable vue/html-indent -->
-        <SyntaxHighlight lang="python">import qiskit
+        <SyntaxHighlight
+          lang="python"
+          :label="title"
+        >import qiskit
 from qiskit.providers.aer.noise import NoiseModel
 from qiskit.providers.aer.noise.errors.standard_errors import depolarizing_error
 

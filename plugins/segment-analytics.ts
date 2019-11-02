@@ -7,6 +7,12 @@ declare global {
   }
 }
 
+declare module 'vue/types/vue' {
+  interface Vue {
+    $trackClickEvent(params: ClickEventParams): void
+  }
+}
+
 interface ClickEventParams {
   action: string
   objectType: string

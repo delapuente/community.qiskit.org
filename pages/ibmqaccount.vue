@@ -36,7 +36,10 @@
         <h2>Example</h2>
         <!-- eslint-disable vue/multiline-html-element-content-newline -->
         <!-- eslint-disable vue/html-indent -->
-        <SyntaxHighlight lang="python">from qiskit import IBMQ
+        <SyntaxHighlight
+          lang="python"
+          :label="title"
+        >from qiskit import IBMQ
 from qiskit.providers.ibmq import least_busy
 
 # Load local account information

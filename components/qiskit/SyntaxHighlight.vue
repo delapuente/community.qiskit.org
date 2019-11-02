@@ -17,10 +17,15 @@ import { Component, Prop } from 'vue-property-decorator'
 @Component
 export default class extends Vue {
   @Prop({ type: String, default: 'python' }) lang
+  @Prop(String) label
 
   copyToClipboard() {
     const code = this.$refs.code as HTMLElement
     navigator.clipboard.writeText(code.innerText)
+    this.$trackClickEvent({
+      action: `${this.label}: Copy Code Sample`,
+      objectType: 'Button'
+    })
   }
 }
 </script>

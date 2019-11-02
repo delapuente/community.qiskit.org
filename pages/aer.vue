@@ -44,7 +44,10 @@
         <h2>Example</h2>
         <!-- eslint-disable vue/multiline-html-element-content-newline -->
         <!-- eslint-disable vue/html-indent -->
-        <SyntaxHighlight lang="python">from qiskit import QuantumCircuit, execute, Aer, IBMQ
+        <SyntaxHighlight
+          lang="python"
+          :label="title"
+        >from qiskit import QuantumCircuit, execute, Aer, IBMQ
 from qiskit.providers.aer import noise
 
 # Choose a real device to simulate
