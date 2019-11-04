@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
 interface AnalyticsContext {
-  bluemixAnalytics: any
-  digitalData: any
+  bluemixAnalytics?: any
+  digitalData?: any
   location: Pick<Location, 'href' | 'pathname'>
 }
 
@@ -30,12 +30,13 @@ declare global {
 function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
   const { action, objectType, milestoneName } = params
   if (context.bluemixAnalytics && context.digitalData) {
+    const { bluemixAnalytics, digitalData, location } = context
     let segmentEvent: CustomEvent = {
-      productTitle: context.digitalData.page.pageInfo.productTitle,
-      category: context.digitalData.page.pageInfo.analytics.category,
-      url: context.location.href,
-      path: context.location.pathname,
-      action: `${context.location.href} - Button Clicked: ${action}`,
+      productTitle: digitalData.page.pageInfo.productTitle,
+      category: digitalData.page.pageInfo.analytics.category,
+      url: location.href,
+      path: location.pathname,
+      action: `${location.href} - Button Clicked: ${action}`,
       objectType,
       successFlag: true
     }
@@ -44,7 +45,7 @@ function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
       segmentEvent = { ...segmentEvent, milestoneName }
     }
 
-    context.bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
+    bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
   }
 }
 
