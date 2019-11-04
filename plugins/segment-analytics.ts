@@ -72,7 +72,7 @@ function assertCanGet<T>(getter: () => T, error: string): T {
   try {
     result = getter()
   } catch (ex) { }
-  if (typeof result === 'undefined') {
+  if (!result) {
     throw new Error(error)
   }
   return result
