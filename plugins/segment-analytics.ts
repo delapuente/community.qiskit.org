@@ -67,7 +67,7 @@ function getOrFailCategory(digitalData: any): string {
   )
 }
 
-function assertCanGet(getter: () => any, error: string) {
+function assertCanGet<T>(getter: () => T, error: string): T {
   let result
   try {
     result = getter()
