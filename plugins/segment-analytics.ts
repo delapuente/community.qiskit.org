@@ -29,24 +29,53 @@ declare global {
 
 function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
   const { action, objectType, milestoneName } = params
-  if (context.bluemixAnalytics && context.digitalData) {
-    const { bluemixAnalytics, digitalData, location } = context
-    let segmentEvent: CustomEvent = {
-      productTitle: digitalData.page.pageInfo.productTitle,
-      category: digitalData.page.pageInfo.analytics.category,
-      url: location.href,
-      path: location.pathname,
-      action: `${location.href} - Button Clicked: ${action}`,
-      objectType,
-      successFlag: true
-    }
+  const { bluemixAnalytics, digitalData, location } = context
 
-    if (milestoneName) {
-      segmentEvent = { ...segmentEvent, milestoneName }
-    }
+  if (!bluemixAnalytics || !digitalData) { return }
 
-    bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
+  const productTitle = getOrFailProductTitle(digitalData)
+  const category = getOrFailCategory(digitalData)
+
+  let segmentEvent: CustomEvent = {
+    productTitle,
+    category,
+    url: location.href,
+    path: location.pathname,
+    action: `${location.href} - Button Clicked: ${action}`,
+    objectType,
+    successFlag: true
   }
+
+  if (milestoneName) {
+    segmentEvent = { ...segmentEvent, milestoneName }
+  }
+
+  bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
+}
+
+function getOrFailProductTitle(digitalData: any): string {
+  return assertCanGet(
+    () => digitalData.page.pageInfo.productTitle,
+    '`digitalData.page.pageInfo.productTitle` is missing'
+  )
+}
+
+function getOrFailCategory(digitalData: any): string {
+  return assertCanGet(
+    () => digitalData.page.pageInfo.analytics.category,
+    '`digitalData.page.pageInfo.analytics.category` is missing'
+  )
+}
+
+function assertCanGet(getter: () => any, error: string) {
+  let result
+  try {
+    result = getter()
+  } catch (ex) { }
+  if (typeof result === 'undefined') {
+    throw new Error(error)
+  }
+  return result
 }
 
 declare module 'vue/types/vue' {
