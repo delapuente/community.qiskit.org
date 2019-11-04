@@ -59,7 +59,9 @@
             </nuxt-link>
           </nav>
         </section>
-        <nuxt-link class="link-to-home" to="/">Qiskit</nuxt-link>
+        <nuxt-link class="link-to-home" to="/">
+          Qiskit
+        </nuxt-link>
         <nav class="navigation-group navigation-group--with-separator">
           <nuxt-link
             v-for="(link, index) in elements"

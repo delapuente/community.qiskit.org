@@ -28,7 +28,6 @@ declare global {
 }
 
 function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
-  console.log('Analytics', params)
   const { action, objectType, milestoneName } = params
   if (context.bluemixAnalytics && context.digitalData) {
     let segmentEvent: CustomEvent = {

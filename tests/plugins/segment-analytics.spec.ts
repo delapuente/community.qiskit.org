@@ -21,7 +21,6 @@ const window: AnalyticsContext = {
 }
 
 describe('trackClickEvent', () => {
-
   beforeEach(() => {
     window.bluemixAnalytics.trackEvent.mockClear()
   })
@@ -56,4 +55,3 @@ describe('trackClickEvent', () => {
     )
   })
 })
-
