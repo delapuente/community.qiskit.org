@@ -1,16 +1,9 @@
 import Vue from 'vue'
 
-declare global {
-  interface Window {
-    bluemixAnalytics: any
-    digitalData: any
-  }
-}
-
-declare module 'vue/types/vue' {
-  interface Vue {
-    $trackClickEvent(params: ClickEventParams): void
-  }
+interface AnalyticsContext {
+  bluemixAnalytics: any
+  digitalData: any
+  location: Pick<Location, 'href' | 'pathname'>
 }
 
 interface ClickEventParams {
@@ -30,15 +23,20 @@ interface CustomEvent {
   successFlag: boolean
 }
 
-function trackClickEvent(params: ClickEventParams) {
+declare global {
+  interface Window extends AnalyticsContext {}
+}
+
+function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
+  console.log('Analytics', params)
   const { action, objectType, milestoneName } = params
-  if (window.bluemixAnalytics && window.digitalData) {
+  if (context.bluemixAnalytics && context.digitalData) {
     let segmentEvent: CustomEvent = {
-      productTitle: window.digitalData.page.pageInfo.productTitle,
-      category: window.digitalData.page.pageInfo.analytics.category,
-      url: window.location.href,
-      path: window.location.pathname,
-      action: `${window.location.href} - Button Clicked: ${action}`,
+      productTitle: context.digitalData.page.pageInfo.productTitle,
+      category: context.digitalData.page.pageInfo.analytics.category,
+      url: context.location.href,
+      path: context.location.pathname,
+      action: `${context.location.href} - Button Clicked: ${action}`,
       objectType,
       successFlag: true
     }
@@ -47,8 +45,17 @@ function trackClickEvent(params: ClickEventParams) {
       segmentEvent = { ...segmentEvent, milestoneName }
     }
 
-    window.bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
+    context.bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
   }
 }
 
-Vue.prototype.$trackClickEvent = trackClickEvent
+declare module 'vue/types/vue' {
+  interface Vue {
+    $trackClickEvent(params: ClickEventParams): void
+  }
+}
+
+Vue.prototype.$trackClickEvent =
+  (params: ClickEventParams) => trackClickEvent(window, params)
+
+export { trackClickEvent, ClickEventParams, AnalyticsContext }
