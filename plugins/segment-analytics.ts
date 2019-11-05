@@ -46,7 +46,7 @@ function trackClickEvent(context: AnalyticsContext, params: ClickEventParams) {
     successFlag: true
   }
 
-  if (milestoneName) { segmentEvent['milestoneName'] = milestoneName }
+  if (milestoneName) { segmentEvent.milestoneName = milestoneName }
 
   bluemixAnalytics.trackEvent('Custom Event', segmentEvent)
 }
@@ -85,8 +85,7 @@ declare module 'vue/types/vue' {
 Vue.prototype.$trackClickEvent = (params: ClickEventParams) => {
   try {
     trackClickEvent(window, params)
-  }
-  catch (ex) {
+  } catch (ex) {
     console.warn('Error trying to track a click event:', ex)
   }
 }
